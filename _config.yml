@@ -1,0 +1,16 @@
+title: ETRI Robot Foundation Model Lab
+description: Building Physical Intelligence
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+collections:
+  research:
+    output: true
+    permalink: /research/:path/
+  news:
+    output: false # News might just be a list, or true if we want pages
+
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed

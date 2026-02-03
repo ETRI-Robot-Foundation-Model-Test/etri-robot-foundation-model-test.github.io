@@ -1,337 +1,56 @@
-<!DOCTYPE html>
-<html lang="ko">
+---
+layout: default
+title: ETRI Robot Foundation Model Lab
+---
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETRI Robot Foundation Model Lab</title>
-    <style>
-        :root {
-            --etri-blue: #0054a6;
-            /* ETRI 공식 색상 느낌 */
-            --accent: #00a1e1;
-            --text-main: #2c3e50;
-            --text-muted: #7f8c8d;
-            --bg-light: #f8f9fa;
-        }
+<header class="hero">
+    <h1>Building Physical Intelligence</h1>
+    <p>우리는 로봇이 세상을 이해하고 상호작용할 수 있도록 돕는 <strong>로봇 기초 모델(Robot Foundation Models)</strong>을 연구합니다. 시각, 언어, 그리고 촉각을
+        아우르는 멀티모달 지능을 통해 실세계 문제를 해결합니다.</p>
+</header>
 
-        body {
-            font-family: 'Pretendard', -apple-system, sans-serif;
-            line-height: 1.7;
-            color: var(--text-main);
-            margin: 0;
-        }
+<section id="news">
+    <h2>Latest News</h2>
+    {% for news_item in site.news %}
+    <div class="news-item">
+        <span class="news-date">{{ news_item.date_label }}</span>
+        <span class="news-text">{{ news_item.title }}</span>
+    </div>
+    {% endfor %}
+</section>
 
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 10%;
-            background: white;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: var(--etri-blue);
-            text-decoration: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            margin-left: 2rem;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--etri-blue);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 6rem 10%;
-            background: linear-gradient(rgba(0, 84, 166, 0.03), rgba(0, 161, 225, 0.03));
-            text-align: left;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin: 0;
-            color: var(--etri-blue);
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 900px;
-            margin-top: 1.5rem;
-        }
-
-        section {
-            padding: 5rem 10%;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 2.5rem;
-            border-left: 5px solid var(--etri-blue);
-            padding-left: 15px;
-        }
-
-        /* News Section */
-        .news-item {
-            margin-bottom: 1rem;
-            display: flex;
-            gap: 20px;
-        }
-
-        .news-date {
-            font-weight: bold;
-            color: var(--etri-blue);
-            min-width: 100px;
-        }
-
-        /* Projects Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #efefef;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            background: #eee;
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .card-tag {
-            color: var(--etri-blue);
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .card h3 {
-            margin: 0.5rem 0;
-            font-size: 1.3rem;
-        }
-
-        /* Members List */
-        .member-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .member {
-            text-align: center;
-        }
-
-        .member img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: #eee;
-            margin-bottom: 1rem;
-        }
-
-        .member-name {
-            font-weight: bold;
-            display: block;
-        }
-
-        .member-role {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        footer {
-            background: #333;
-            color: white;
-            padding: 3rem 10%;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                display: flex;
-                gap: 10px;
-                margin-bottom: 10px;
-            }
-
-            .nav-links a {
-                margin-left: 0;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Card Overlay Styles */
-        .card {
-            position: relative;
-        }
-
-        .card-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 84, 166, 0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            opacity: 0;
-            transition: all 0.3s ease;
-            border-radius: 12px;
-            z-index: 10;
-        }
-
-        .card:hover .card-overlay {
-            opacity: 1;
-        }
-
-        .overlay-item {
-            padding: 0.8rem 1.5rem;
-            background: white;
-            color: var(--etri-blue);
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 25px;
-            transition: 0.2s;
-            transform: translateY(20px);
-            opacity: 0;
-        }
-
-        .card:hover .overlay-item {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .card:hover .overlay-item:nth-child(2) {
-            transition-delay: 0.1s;
-        }
-    </style>
-</head>
-
-<body>
-
-    <nav>
-        <a href="#" class="logo">ETRI Robot Foundation Model Lab</a>
-        <div class="nav-links">
-            <a href="#news">News</a>
-            <a href="#research">Research</a>
-            <a href="#members">Members</a>
-            <a href="#publications">Publications</a>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <h1>Building Physical Intelligence</h1>
-        <p>우리는 로봇이 세상을 이해하고 상호작용할 수 있도록 돕는 <strong>로봇 기초 모델(Robot Foundation Models)</strong>을 연구합니다. 시각, 언어, 그리고 촉각을
-            아우르는 멀티모달 지능을 통해 실세계 문제를 해결합니다.</p>
-    </header>
-
-    <section id="news">
-        <h2>Latest News</h2>
-        <div class="news-item">
-            <span class="news-date">2026.01</span>
-            <span class="news-text">우수연구상 수상 (Vision-to-Tactile Pseudo Labeling 연구 성과)</span>
-        </div>
-        <div class="news-item">
-            <span class="news-date">2025.12</span>
-            <span class="news-text">ICRA 2026 논문 2편 채택 완료</span>
-        </div>
-    </section>
-
-    <section id="research" style="background-color: var(--bg-light);">
-        <h2>Research Projects</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="projects/project1.html" class="overlay-item">View Details</a>
-                    <a href="#" class="overlay-item">Related Paper</a>
-                </div>
-                <img src="https://via.placeholder.com/400x225/0054a6/FFFFFF?text=VLA+Model" alt="Project 1">
-                <div class="card-content">
-                    <span class="card-tag">Foundation Model</span>
-                    <h3>Multi-modal VLA for Manipulation</h3>
-                    <p>시각-언어-행동을 통합하여 복잡한 로봇 조작 과업을 수행하는 기초 모델 연구</p>
-                </div>
+<section id="research" style="background-color: var(--bg-light);">
+    <h2>Research Projects</h2>
+    <div class="grid">
+        {% for project in site.research %}
+        <div class="card">
+            <div class="card-overlay">
+                <a href="{{ project.url | relative_url }}" class="overlay-item">View Details</a>
+                <a href="#" class="overlay-item">Related Paper</a>
             </div>
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="projects/project2.html" class="overlay-item">View Details</a>
-                    <a href="#" class="overlay-item">Demo Video</a>
-                </div>
-                <img src="https://via.placeholder.com/400x225/00a1e1/FFFFFF?text=Tactile+Sensing" alt="Project 2">
-                <div class="card-content">
-                    <span class="card-tag">Tactile Intelligence</span>
-                    <h3>Pseudo-Tactile Feedback Generation</h3>
-                    <p>기존 비디오 데이터셋에서 가상의 촉각 신호를 예측하여 학습 데이터를 확장하는 기술</p>
-                </div>
+            <img src="{{ project.thumbnail }}" alt="{{ project.title }}">
+            <div class="card-content">
+                <span class="card-tag">{{ project.tag }}</span>
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
             </div>
         </div>
-    </section>
+        {% endfor %}
+    </div>
+</section>
 
-    <section id="members">
-        <h2>Members</h2>
-        <div class="member-grid">
-            <div class="member">
-                <img src="https://via.placeholder.com/120" alt="Member">
-                <span class="member-name">홍길동</span>
-                <span class="member-role">Principal Researcher</span>
-            </div>
-            <div class="member">
-                <img src="https://via.placeholder.com/120" alt="Member">
-                <span class="member-name">당신의 이름</span>
-                <span class="member-role">Researcher</span>
-            </div>
+<section id="members">
+    <h2>Members</h2>
+    <div class="member-grid">
+        <div class="member">
+            <img src="https://via.placeholder.com/120" alt="Member">
+            <span class="member-name">홍길동</span>
+            <span class="member-role">Principal Researcher</span>
         </div>
-    </section>
-
-    <footer>
-        <p><strong>ETRI Robot Foundation Model Research Section</strong></p>
-        <p>218 Gajeong-ro, Yuseong-gu, Daejeon, 34129, Korea</p>
-        <p style="opacity: 0.6; margin-top: 2rem;">&copy; 2026 ETRI. All rights reserved.</p>
-    </footer>
-
-</body>
-
-</html>
+        <div class="member">
+            <img src="https://via.placeholder.com/120" alt="Member">
+            <span class="member-name">당신의 이름</span>
+            <span class="member-role">Researcher</span>
+        </div>
+    </div>
+</section>

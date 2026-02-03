@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ " /assets/css/style.css" | relative_url }}">
+</head>
+
+<body>
+
+    <nav>
+        <a href="{{ " /" | relative_url }}" class="logo">ETRI Robot Foundation Model Lab</a>
+        <div class="nav-links">
+            <a href="{{ " /#news" | relative_url }}">News</a>
+            <a href="{{ " /#research" | relative_url }}">Research</a>
+            <a href="{{ " /#members" | relative_url }}">Members</a>
+            <a href="{{ " /#publications" | relative_url }}">Publications</a>
+        </div>
+    </nav>
+
+    {{ content }}
+
+    <footer>
+        <p><strong>ETRI Robot Foundation Model Research Section</strong></p>
+        <p>218 Gajeong-ro, Yuseong-gu, Daejeon, 34129, Korea</p>
+        <p style="opacity: 0.6; margin-top: 2rem;">&copy; 2026 ETRI. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
