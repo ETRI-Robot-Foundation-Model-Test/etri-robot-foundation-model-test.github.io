@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo-Tactile Feedback - ETRI Robot Lab</title>
+    <style>
+        :root {
+            --etri-blue: #0054a6;
+            --accent: #00a1e1;
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+            --bg-light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 10%;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--etri-blue);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            margin-left: 2rem;
+            font-weight: 500;
+        }
+
+        .project-hero {
+            padding: 6rem 10%;
+            background: var(--bg-light);
+        }
+
+        .project-hero h1 {
+            color: var(--etri-blue);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content {
+            padding: 4rem 10%;
+            max-width: 800px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--etri-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">ETRI Robot Foundation Model Lab</a>
+        <div class="nav-links">
+            <a href="../index.html#news">News</a>
+            <a href="../index.html#research">Research</a>
+            <a href="../index.html#members">Members</a>
+        </div>
+    </nav>
+
+    <header class="project-hero">
+        <h1>Pseudo-Tactile Feedback Generation</h1>
+        <p>기존 비디오 데이터셋에서 가상의 촉각 신호를 예측하여 학습 데이터를 확장하는 기술</p>
+    </header>
+
+    <section class="content">
+        <h2>Project Overview</h2>
+        <p>비전 기반의 로봇 학습은 시각 정보에만 의존하지만, 실제 조작에서는 촉각 정보가 매우 중요합니다. 본 연구는 Video-to-Tactile 변환 모델을 통해 대규모 비디오 데이터셋에 가상 촉각
+            라벨을 생성합니다.</p>
+
+        <h3>Key Features</h3>
+        <ul>
+            <li>V2T (Vision to Tactile) Generative Model</li>
+            <li>Physics-informed Consistency Loss</li>
+            <li>Tactile-aware Manipulation Policy</li>
+        </ul>
+
+        <a href="../index.html" class="back-link">← Back to Home</a>
+    </section>
+
+</body>
+
+</html>
